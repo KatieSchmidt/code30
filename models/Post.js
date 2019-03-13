@@ -10,7 +10,11 @@ const PostSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now()
+  },
+  month: {
+    type: String,
+    required: true
   },
   // timeStart: {
 
