@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 //routes
 const home = require("./routes/api/home");
-const post = require("./routes/api/posts");
+const posts = require("./routes/api/posts");
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,7 +24,7 @@ mongoose
 
 //use routes
 app.use("/api/home", home);
-app.use("/api/post", post);
+app.use("/api/posts", posts);
 
 const port = process.env.PORT || 5000;
 
