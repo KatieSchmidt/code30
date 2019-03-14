@@ -12,16 +12,6 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  month: {
-    type: String,
-    required: true
-  },
-  // timeStart: {
-
-  // }
-  // timeEnd : {
-
-  // }
   post: {
     type: String,
     required: true
