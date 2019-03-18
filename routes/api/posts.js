@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../../models/Post");
 
+const passport = require("passport");
+
 //@route  GET api/posts
 //@dsc    get all posts
 //@access Public
@@ -39,17 +41,21 @@ router.get("/:post_id", (req, res) => {
 //@route  Post api/posts
 //@dsc    create a post
 //@access Private
-router.post("/", (req, res) => {
-  const postFields = {
-    title: req.body.title,
-    post: req.body.post
-  };
-  new Post(postFields)
-    .save()
-    .then(post => {
-      res.json(post);
-    })
-    .catch(err => res.status(404).json(err));
-});
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const postFields = {
+      title: req.body.title,
+      post: req.body.post
+    };
+    new Post(postFields)
+      .save()
+      .then(post => {
+        res.json(post);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
 
 module.exports = router;
