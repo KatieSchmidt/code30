@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 //routes
-const home = require("./routes/api/home");
+const admin = require("./routes/api/admin");
 const posts = require("./routes/api/posts");
 
 // body parser middleware
@@ -23,7 +23,7 @@ mongoose
   .catch(err => console.log(err));
 
 //use routes
-app.use("/api/home", home);
+app.use("/api/admin", admin);
 app.use("/api/posts", posts);
 
 const port = process.env.PORT || 5000;
