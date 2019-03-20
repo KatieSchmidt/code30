@@ -24,15 +24,15 @@ mongoose
   })
   .catch(err => console.log(err));
 
+//use routes
+app.use("/api/admin", admin);
+app.use("/api/posts", posts);
+
 //Passport middleware
 app.use(passport.initialize());
 
 //passport config
 require("./config/passport")(passport);
-
-//use routes
-app.use("/api/admin", admin);
-app.use("/api/posts", posts);
 
 const port = process.env.PORT || 5000;
 
