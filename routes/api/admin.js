@@ -96,7 +96,7 @@ router.post("/login", (req, res) => {
       });
     });
   } else {
-    errors.admin = "You arent an Admin!";
+    errors.admin = "You aren't an Admin!";
     return res.status(400).json(errors);
   }
 });
