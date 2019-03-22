@@ -47,7 +47,9 @@ router.post(
   (req, res) => {
     const postFields = {
       title: req.body.title,
-      post: req.body.post
+      post: req.body.post,
+      start: req.body.start,
+      end: req.body.end
     };
     new Post(postFields)
       .save()
