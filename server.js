@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
 const passport = require("passport");
+const path = require("path");
+require("dotenv").config;
 
 //routes
 const admin = require("./routes/api/admin");
@@ -12,6 +13,9 @@ const posts = require("./routes/api/posts");
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//use dotenv
+// app.use(dotenv.config());
 
 //DB CONFIG
 const db = require("./config/keys").mongoURI;
@@ -34,7 +38,13 @@ app.use(passport.initialize());
 //passport config
 require("./config/passport")(passport);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`App started on port ${port}`);

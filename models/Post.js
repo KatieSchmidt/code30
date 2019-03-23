@@ -15,14 +15,6 @@ const PostSchema = new Schema({
   post: {
     type: String,
     required: true
-  },
-  start: {
-    type: String,
-    required: true
-  },
-  end: {
-    type: String,
-    required: true
   }
 });
 
