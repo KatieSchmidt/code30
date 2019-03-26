@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "autoprefix": "postcss src/App.css --use autoprefixer -r"
   },
   "eslintConfig": {
     "extends": "react-app"
