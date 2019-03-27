@@ -234,6 +234,25 @@
   text-align: center;
 }
 
+/*Timer styling*/
+.timer__minutes {
+  color: green;
+}
+
+@keyframes warn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.timer__seconds {
+  color: red;
+  animation: warn 1s linear infinite;
+}
+
 /*footer styling isnt in the grid*/
 .footer {
   position: fixed;

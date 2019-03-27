@@ -16,27 +16,36 @@ export default class Timer extends Component {
   }
 
   removeOne() {
-    if (this.state.remaining > 0) {
+    if (this.state.remaining > 1) {
       this.setState(state => ({
         remaining: state.remaining - 1
       }));
     } else {
       clearInterval(this);
       this.setState(state => ({
-        remaining: "done!"
+        remaining: "done!",
+        started: false
       }));
     }
   }
 
   startTimer() {
+    this.setState({
+      started: true
+    });
     setInterval(this.removeOne, 60000);
   }
 
   render() {
-    return (
-      <div className="timer">
-        <p>{this.state.remaining}</p>
-      </div>
-    );
+    let timerInfo;
+    if (this.state.started === true && this.state.remaining > 1) {
+      timerInfo = (
+        <p className="timer__minutes">{this.state.remaining} minutes</p>
+      );
+    }
+    if (this.state.started === true && this.state.remaining === 1) {
+      timerInfo = <p className="timer__seconds">60 seconds</p>;
+    }
+    return <div className="timer">{timerInfo}</div>;
   }
 }
