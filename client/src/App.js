@@ -51,7 +51,7 @@ class App extends Component {
         <Router>
           <div className="">
             <div className="grid">
-              <NavButton />
+              {/* <NavButton /> */}
               <HeaderBackground />
               <Header />
               <Route exact path="/" component={Posts} />

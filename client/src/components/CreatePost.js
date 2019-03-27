@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions/postActions";
 
+import Timer from "./Timer";
+
 class CreatePost extends Component {
   constructor() {
     super();
@@ -12,7 +14,8 @@ class CreatePost extends Component {
       title: "",
       post: "",
       posted: false,
-      start: 30
+      start: 30,
+      started: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -28,6 +31,9 @@ class CreatePost extends Component {
   //start the timer when you click the input box. If you havent submitted by 30 minutes, it will submit it for you and reset state. if you have submitted it with the sumit butten, the submit event will change the posted state to true and it wont be submitted again here.
   setTimerStart() {
     const halfHour = 1800000;
+    this.setState({
+      started: true
+    });
     setTimeout(() => {
       const newPost = {
         title: this.state.title,
@@ -37,7 +43,8 @@ class CreatePost extends Component {
         this.props.createPost(newPost, this.props.history);
         this.setState({
           title: "",
-          post: ""
+          post: "",
+          started: false
         });
       } else {
         return;
@@ -57,13 +64,20 @@ class CreatePost extends Component {
     this.setState({
       title: "",
       post: "",
-      posted: true
+      posted: true,
+      started: false
     });
   }
   render() {
+    let timerComponent;
+    if (this.state.started) {
+      timerComponent = <Timer />;
+    }
+
     return (
       <div className="create-post__component">
         <h1 className="create-post__header">Create Post</h1>
+        {timerComponent}
         <form className="post__form" onSubmit={this.onSubmit}>
           <input
             type="text"
